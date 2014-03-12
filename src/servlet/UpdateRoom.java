@@ -30,7 +30,12 @@ public class UpdateRoom extends MyServlet {
 			Room room = manager.getRoomDao().queryForId(
 					Integer.parseInt(request.getParameter(ID)));
 			
+			String title=request.getParameter(Room.TITLE);
 			String capacity=request.getParameter(Room.CAPACITY);
+			
+			if(!MyServlet.isEmpty(title)){
+				room.setTitle(title);
+			}
 			
 			if(!MyServlet.isEmpty(capacity)){
 				room.setCapacity(Integer.parseInt(capacity));

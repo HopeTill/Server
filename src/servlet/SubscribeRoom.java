@@ -26,6 +26,7 @@ public class SubscribeRoom extends MyServlet {
 	@Override
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		try {
+			String title=request.getParameter(Room.TITLE);
 			int masterRoom=Integer.parseInt(request.getParameter(Room.MULTIPURPOSE_ROOM));
 			int capacity=Integer.parseInt(request.getParameter(Room.CAPACITY));
 			
@@ -39,6 +40,7 @@ public class SubscribeRoom extends MyServlet {
 			}
 			
 			Room room=new Room();
+			room.setTitle(title);
 			room.setRoom(multipurposeRoom);
 			room.setCapacity(capacity);
 			

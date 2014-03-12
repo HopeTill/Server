@@ -9,8 +9,11 @@ public class Room {
 	private MultipurposeRoom room;
 	@DatabaseField
 	private int capacity;
+	@DatabaseField
+	private String title;
 	
 	
+	public static final String TITLE="title";
 	public static final String MULTIPURPOSE_ROOM="multipurpose_room_id";
 	public static final String CAPACITY="capacity";
 	
@@ -41,5 +44,13 @@ public class Room {
 
 	public void setCapacity(int capacity) {
 		this.capacity = capacity;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 }
