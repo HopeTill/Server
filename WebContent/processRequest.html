@@ -5,20 +5,58 @@
 <title>Insert title here</title>
 </head>
 <body>
-/SubscribeUser
-<form method="POST" action="SubscribeUser">
+/User/Subscribe
+<form method="POST" action="User/Subscribe">
 <input type="text" name="login" value="" />
 <input type="text" name="password" value="" />
 <input type="text" name="first_name" value="" />
 <input type="text" name="last_name" value="" />
 <input type="submit" />
 </form>
-/SubscribePeople
-<form method="POST" action="SubscribePeople">
+<br />
+/People/Subscribe
+<form method="POST" action="People/Subscribe">
 <input type="text" name="first_name" value="" />
 <input type="text" name="last_name" value="" />
 <input type="text" name="email" value="" />
 <input type="text" name="phone" value="" />
+<input type="submit" />
+</form>
+<br />
+/MultipurposeRoom/Subscribe
+<form method="POST" action="MultipurposeRoom/Subscribe">
+<input type="text" name="name" value="" />
+<input type="text" name="location" value="" />
+<input type="submit" />
+</form>
+/MultipurposeRoom/Update
+<form method="POST" action="MultipurposeRoom/Update">
+<input type="text" name="name" value="" />
+<input type="text" name="location" value="" />
+<input type="submit" />
+</form>
+/MultipurposeRoom/Delete
+<form method="POST" action="MultipurposeRoom/Delete">
+<input type="text" name="id" value="" />
+<input type="submit" />
+</form>
+<br />
+/Room/Subscribe
+<form method="POST" action="Room/Subscribe">
+<input type="text" name="multipurpose_room_id" value="" />
+<input type="text" name="title" value="" />
+<input type="text" name="capacity" value="" />
+<input type="submit" />
+</form>
+/Room/Subscribe
+<form method="POST" action="Room/Update">
+<input type="text" name="title" value="" />
+<input type="text" name="capacity" value="" />
+<input type="submit" />
+</form>
+/Room/Delete
+<form method="POST" action="Room/Delete">
+<input type="text" name="id" value="" />
 <input type="submit" />
 </form>
 </body>

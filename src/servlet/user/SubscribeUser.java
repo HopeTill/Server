@@ -1,4 +1,4 @@
-package servlet;
+package servlet.user;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -8,13 +8,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import servlet.CreateResult;
+import servlet.MyServlet;
+import servlet.ServletResult;
 import storage.DatabaseManager;
 import entity.User;
 
 /**
  * Servlet implementation class SubscribeUser
  */
-@WebServlet("/SubscribeUser")
+@WebServlet("/User/Subscribe")
 public class SubscribeUser extends MyServlet {
 	private static final long serialVersionUID = 1L;
 	

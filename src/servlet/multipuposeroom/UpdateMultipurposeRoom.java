@@ -1,4 +1,4 @@
-package servlet;
+package servlet.multipuposeroom;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -7,13 +7,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import servlet.MyServlet;
+import servlet.ServletResult;
 import storage.DatabaseManager;
 import entity.MultipurposeRoom;
 
 /**
  * Servlet implementation class UpdateMultipurposeRoom
  */
-@WebServlet("/UpdateMultipurposeRoom")
+@WebServlet("/MultipurposeRoom/Update")
 public class UpdateMultipurposeRoom extends MyServlet {
 	private static final long serialVersionUID = 1L;
 	

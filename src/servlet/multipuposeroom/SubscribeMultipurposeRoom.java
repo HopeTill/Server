@@ -1,4 +1,4 @@
-package servlet;
+package servlet.multipuposeroom;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -7,13 +7,16 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import servlet.CreateResult;
+import servlet.MyServlet;
+import servlet.ServletResult;
 import storage.DatabaseManager;
 import entity.MultipurposeRoom;
 
 /**
  * Servlet implementation class AddMultipurposeRoom
  */
-@WebServlet("/SubscribeMultipurposeRoom")
+@WebServlet("/MultipurposeRoom/Subscribe")
 public class SubscribeMultipurposeRoom extends MyServlet {
 	private static final long serialVersionUID = 1L;
 	

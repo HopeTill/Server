@@ -1,4 +1,4 @@
-package servlet;
+package servlet.room;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -7,13 +7,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import servlet.MyServlet;
+import servlet.ServletResult;
 import storage.DatabaseManager;
 import entity.Room;
 
 /**
  * Servlet implementation class UpdateRoom
  */
-@WebServlet("/UpdateRoom")
+@WebServlet("/Room/Update")
 public class UpdateRoom extends MyServlet {
 	private static final long serialVersionUID = 1L;
 

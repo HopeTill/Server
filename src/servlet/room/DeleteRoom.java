@@ -1,4 +1,4 @@
-package servlet;
+package servlet.room;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -7,16 +7,19 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import servlet.MyServlet;
+import servlet.ServletResult;
 import storage.DatabaseManager;
 
 /**
- * Servlet implementation class DeleteMultipurposeRoom
+ * Servlet implementation class DeleteRoom
  */
-@WebServlet("/DeleteMultipurposeRoom")
-public class DeleteMultipurposeRoom extends MyServlet {
+@WebServlet("/Room/Delete")
+public class DeleteRoom extends MyServlet {
 	private static final long serialVersionUID = 1L;
+
 	
-    public DeleteMultipurposeRoom() {
+    public DeleteRoom() {
         super(ID);
     }
 
@@ -25,7 +28,7 @@ public class DeleteMultipurposeRoom extends MyServlet {
 		DatabaseManager manager=DatabaseManager.getManager();
 		
 		try {
-			ServletResult.sendResult(response, manager.getMultipurposeRoomDao()
+			ServletResult.sendResult(response, manager.getRoomDao()
 					.deleteById(Integer.parseInt(ID))==1 ?
 							ServletResult.SUCCESS
 							: ServletResult.ERROR);
