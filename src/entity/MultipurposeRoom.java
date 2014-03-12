@@ -16,6 +16,7 @@ public class MultipurposeRoom {
 	public static final String NAME="name";
 	public static final String LOCATION="location";
 	
+	
 	public MultipurposeRoom(){
 		
 	}
