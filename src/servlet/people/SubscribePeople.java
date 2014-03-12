@@ -21,30 +21,27 @@ import entity.People;
 public class SubscribePeople extends MyServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private static final String FIRST_NAME="first_name";
-	private static final String LAST_NAME="last_name";
-	private static final String EMAIL="email";
-	private static final String PHONE="phone";
+	
 	
        
     /**
      * @see HttpServlet#HttpServlet()
      */
     public SubscribePeople() {
-        super(FIRST_NAME, LAST_NAME);
+        super(People.FIRST_NAME, People.LAST_NAME);
     }
 
 	@Override
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		String firstName=request.getParameter(FIRST_NAME);
-		String lastName=request.getParameter(LAST_NAME);
-		String email=request.getParameter(EMAIL);
-		String phone=request.getParameter(PHONE);
+		String firstName=request.getParameter(People.FIRST_NAME);
+		String lastName=request.getParameter(People.LAST_NAME);
+		String email=request.getParameter(People.EMAIL);
+		String phone=request.getParameter(People.PHONE);
 		
 		People people=new People();
 		people.setFirstName(firstName);
 		people.setLastName(lastName);
-		people.setMail(email);
+		people.setEmail(email);
 		people.setPhone(phone);
 		
 		DatabaseManager manager=DatabaseManager.getManager();

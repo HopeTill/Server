@@ -21,25 +21,20 @@ import entity.User;
 public class SubscribeUser extends MyServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private static final String LOGIN="login";
-	private static final String PASSWORD="password";
-	private static final String FIRST_NAME="first_name";
-	private static final String LAST_NAME="last_name";
-	
        
     /**
      * @see HttpServlet#HttpServlet()
      */
     public SubscribeUser() {
-        super(LOGIN, PASSWORD);
+        super(User.LOGIN, User.PASSWORD);
     }
 
 	@Override
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		String login=request.getParameter(LOGIN);
-		String password=request.getParameter(PASSWORD);
-		String firstName=request.getParameter(FIRST_NAME);
-		String lastName=request.getParameter(LAST_NAME);
+		String login=request.getParameter(User.LOGIN);
+		String password=request.getParameter(User.PASSWORD);
+		String firstName=request.getParameter(User.FIRST_NAME);
+		String lastName=request.getParameter(User.LAST_NAME);
 		
 		User user=new User();
 		user.setLogin(login);

@@ -10,9 +10,16 @@ public class People {
 	@DatabaseField(canBeNull=false)
 	private String lastName;
 	@DatabaseField(canBeNull=true)
-	private String mail;
+	private String email;
 	@DatabaseField(canBeNull=true)
 	private String phone;
+	
+	
+	public static final String FIRST_NAME="first_name";
+	public static final String LAST_NAME="last_name";
+	public static final String EMAIL="email";
+	public static final String PHONE="phone";
+	
 	
 	public People(){
 		
@@ -42,12 +49,12 @@ public class People {
 		this.lastName = lastName;
 	}
 
-	public String getMail() {
-		return mail;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setMail(String mail) {
-		this.mail = mail;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getPhone() {
