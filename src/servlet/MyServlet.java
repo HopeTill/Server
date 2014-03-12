@@ -35,8 +35,7 @@ public abstract class MyServlet extends HttpServlet {
 		boolean well=true;
 		
 		for(String key : requiredParameter){
-			well &= request.getParameter(key)!=null
-					&& !request.getParameter(key).isEmpty();
+			well &= MyServlet.isEmpty(request.getParameter(key));
 		}
 		
 		if(!well){
@@ -47,4 +46,7 @@ public abstract class MyServlet extends HttpServlet {
 	
 	abstract protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException;
 
+	public static boolean isEmpty(String value){
+		return value==null || value.isEmpty();
+	}
 }

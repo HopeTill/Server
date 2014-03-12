@@ -12,6 +12,10 @@ public class MultipurposeRoom {
 	@DatabaseField(canBeNull=false)
 	private String location;
 	
+
+	public static final String NAME="name";
+	public static final String LOCATION="location";
+	
 	public MultipurposeRoom(){
 		
 	}

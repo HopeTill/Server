@@ -20,19 +20,16 @@ import entity.MultipurposeRoom;
 @WebServlet("/SubscribeMultipurposeRoom")
 public class SubscribeMultipurposeRoom extends MyServlet {
 	private static final long serialVersionUID = 1L;
-       
-	private static final String NAME="name";
-	private static final String LOCATION="location";
 	
 	
     public SubscribeMultipurposeRoom() {
-        super(NAME, LOCATION);
+        super(MultipurposeRoom.NAME, MultipurposeRoom.LOCATION);
     }
 
 	@Override
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		String name=request.getParameter(NAME);
-		String location=request.getParameter(LOCATION);
+		String name=request.getParameter(MultipurposeRoom.NAME);
+		String location=request.getParameter(MultipurposeRoom.LOCATION);
 		
 		MultipurposeRoom room=new MultipurposeRoom();
 		room.setName(name);
