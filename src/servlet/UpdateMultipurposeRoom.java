@@ -16,8 +16,6 @@ import entity.MultipurposeRoom;
 @WebServlet("/UpdateMultipurposeRoom")
 public class UpdateMultipurposeRoom extends MyServlet {
 	private static final long serialVersionUID = 1L;
-
-	private static final String ID="id";
 	
 	public UpdateMultipurposeRoom(){
 		super(ID);

@@ -11,6 +11,8 @@ public abstract class MyServlet extends HttpServlet {
 	private static final long serialVersionUID = -570326162982700170L;
 	private String[] requiredParameter;
 	
+	public static final String ID="id";
+	
 	public MyServlet(String... requiredParameter){
 		if(requiredParameter==null) throw new IllegalArgumentException("Can't be null");
 		

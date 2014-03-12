@@ -8,10 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import storage.DatabaseManager;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import entity.MultipurposeRoom;
 
 /**
@@ -36,13 +32,11 @@ public class SubscribeMultipurposeRoom extends MyServlet {
 		room.setLocation(location);
 		
 		DatabaseManager manager=DatabaseManager.getManager();
-		ObjectMapper oMap=new ObjectMapper();
 		
 		try {
 			if(manager.getMultipurposeRoomDao().create(room)==1){
-				response.getWriter().append(
-						oMap.writeValueAsString(new Result(
-								ServletResult.SUCCESS, room.getId())));
+				ServletResult.sendResult(response, new CreateResult(
+						ServletResult.SUCCESS, room.getId()));
 				
 				response.setStatus(HttpServletResponse.SC_CREATED);
 			}
@@ -52,17 +46,6 @@ public class SubscribeMultipurposeRoom extends MyServlet {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			ServletResult.sendResult(response, ServletResult.ERROR);
-		}
-	}
-	
-	private class Result extends ServletResult{
-		@JsonProperty("id")
-		public int id;
-		
-		public Result(int result, int id){
-			super(result);
-			
-			this.id=id;
 		}
 	}
 

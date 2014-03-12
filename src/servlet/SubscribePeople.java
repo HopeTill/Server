@@ -48,7 +48,11 @@ public class SubscribePeople extends MyServlet {
 		
 		try {
 			if(manager.getPeopleDao().create(people)==1){
-				ServletResult.sendResult(response, ServletResult.SUCCESS);
+				ServletResult.sendResult(response, new CreateResult(
+						ServletResult.SUCCESS, people.getId()));
+				
+				response.setStatus(HttpServletResponse.SC_CREATED);
+				
 				response.setStatus(HttpServletResponse.SC_CREATED);
 			}
 			else{

@@ -25,6 +25,15 @@ public class ServletResult {
 		
 		response.getWriter().close();
 	}
+	
+	public static final void sendResult(HttpServletResponse response, ServletResult result) throws JsonProcessingException, IOException{
+		ObjectMapper oMap=new ObjectMapper();
+		
+		response.getWriter().append(
+				oMap.writeValueAsString(result));
+		
+		response.getWriter().close();
+	}
 
 	public static final int SUCCESS=1;
 	public static final int ERROR=0;
