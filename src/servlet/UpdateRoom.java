@@ -8,45 +8,36 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import storage.DatabaseManager;
-import entity.MultipurposeRoom;
+import entity.Room;
 
 /**
- * Servlet implementation class UpdateMultipurposeRoom
+ * Servlet implementation class UpdateRoom
  */
-@WebServlet("/UpdateMultipurposeRoom")
-public class UpdateMultipurposeRoom extends MyServlet {
+@WebServlet("/UpdateRoom")
+public class UpdateRoom extends MyServlet {
 	private static final long serialVersionUID = 1L;
+
 	
-	public UpdateMultipurposeRoom(){
-		super(ID);
-	}
-	
+    public UpdateRoom() {
+        super(ID);
+    }
+
 	@Override
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		DatabaseManager manager=DatabaseManager.getManager();
 		
 		try {
-			MultipurposeRoom room = manager.getMultipurposeRoomDao().queryForId(
+			Room room = manager.getRoomDao().queryForId(
 					Integer.parseInt(request.getParameter(ID)));
 			
-			if(room==null){
-				ServletResult.sendResult(response, ServletResult.NOT_FOUND);
-				return;
-			}
+			String capacity=request.getParameter(Room.CAPACITY);
 			
-			String name=request.getParameter(MultipurposeRoom.NAME);
-			String location=request.getParameter(MultipurposeRoom.LOCATION);
-			
-			if(!MyServlet.isEmpty(name)){
-				room.setName(name);
-			}
-			
-			if(!MyServlet.isEmpty(location)){
-				room.setLocation(location);
+			if(!MyServlet.isEmpty(capacity)){
+				room.setCapacity(Integer.parseInt(capacity));
 			}
 			
 			ServletResult.sendResult(response, 
-					manager.getMultipurposeRoomDao().update(room)==1 ?
+					manager.getRoomDao().update(room)==1 ?
 							ServletResult.SUCCESS
 							: ServletResult.ERROR);
 			

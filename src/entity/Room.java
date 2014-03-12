@@ -10,6 +10,11 @@ public class Room {
 	@DatabaseField
 	private int capacity;
 	
+	
+	public static final String MULTIPURPOSE_ROOM="multipurpose_room_id";
+	public static final String CAPACITY="capacity";
+	
+	
 	public Room(){
 		
 	}
