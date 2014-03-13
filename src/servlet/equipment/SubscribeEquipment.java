@@ -52,7 +52,7 @@ public class SubscribeEquipment extends MyServlet {
 			equipment.setTitle(title);
 			equipment.setAvailable(isAvailable);
 			
-			if(MyServlet.isEmpty(description)) equipment.setDescription(description);
+			if(!MyServlet.isEmpty(description)) equipment.setDescription(description);
 				
 			if(manager.getEquipmentDao().create(equipment)==1){
 				ServletResult.sendResult(response, new CreateResult(

@@ -37,7 +37,7 @@ public class GetAllRoom extends MyServlet {
 		try {
 			if(!MyServlet.isEmpty(masterRoom)){
 				QueryBuilder<Room, Integer> query=manager.getRoomDao().queryBuilder();
-				query.where().eq("multipurposeroom_id", Integer.parseInt(masterRoom));
+				query.where().eq("room_id", Integer.parseInt(masterRoom));
 				
 				ServletResult.sendResult(response, new GetResult(
 						ServletResult.SUCCESS, query.query()));

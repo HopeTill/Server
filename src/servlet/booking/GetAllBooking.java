@@ -52,7 +52,7 @@ public class GetAllBooking extends MyServlet {
 			}
 			else{
 				ServletResult.sendResult(response, new GetResult(
-						ServletResult.SUCCESS, manager.getEquipmentDao().queryForAll()));				
+						ServletResult.SUCCESS, manager.getBookingDao().queryForAll()));				
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

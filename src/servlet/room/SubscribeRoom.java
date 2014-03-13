@@ -45,7 +45,7 @@ public class SubscribeRoom extends MyServlet {
 			Room room=new Room();
 			room.setRoom(multipurposeRoom);
 			room.setCapacity(capacity);
-			if(MyServlet.isEmpty(title)) room.setTitle(title);
+			if(!MyServlet.isEmpty(title)) room.setTitle(title);
 			
 			if(manager.getRoomDao().create(room)==1){
 				ServletResult.sendResult(response, new CreateResult(

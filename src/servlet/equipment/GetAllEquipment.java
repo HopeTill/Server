@@ -39,7 +39,7 @@ public class GetAllEquipment extends MyServlet {
 		try {
 			if(!MyServlet.isEmpty(masterRoom)){
 				QueryBuilder<Equipment, Integer> query=manager.getEquipmentDao().queryBuilder();
-				query.where().eq("multipurposeroom_id", Integer.parseInt(masterRoom));
+				query.where().eq("room_id", Integer.parseInt(masterRoom));
 				
 				ServletResult.sendResult(response, new GetResult(
 						ServletResult.SUCCESS, query.query()));

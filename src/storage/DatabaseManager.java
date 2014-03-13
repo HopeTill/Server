@@ -31,7 +31,7 @@ import entity.User;
  * the DAOs used by the other classes.
  */
 public class DatabaseManager {
-	private static final int DATABASE_VERSION = 2;
+	private static final int DATABASE_VERSION = 1;
 	private static final String HOST="host";
 	private static final String LOGIN="login";
 	private static final String PASSWD="passwd";
@@ -68,6 +68,7 @@ public class DatabaseManager {
 				info=new Info();
 				info.key=DATABASE_VERSION_KEY;
 				info.value=Integer.toString(DATABASE_VERSION);
+				getInfoDao().create(info);
 			}
 			else{
 				int lastVersion=Integer.parseInt(info.value);
@@ -107,14 +108,14 @@ public class DatabaseManager {
 	private void init() throws SQLException{
 		log.info(this.getClass().getSimpleName(), "Init database");
 		
-		TableUtils.createTable(source, User.class);
-		TableUtils.createTable(source, People.class);
-		TableUtils.createTable(source, Room.class);
-		TableUtils.createTable(source, MultipurposeRoom.class);
-		TableUtils.createTable(source, Equipment.class);
-		TableUtils.createTable(source, Booking.class);
-		TableUtils.createTable(source, AssBookingEquipment.class);
-		TableUtils.createTable(source, AssBookingRoom.class);
+		TableUtils.createTableIfNotExists(source, User.class);
+		TableUtils.createTableIfNotExists(source, People.class);
+		TableUtils.createTableIfNotExists(source, Room.class);
+		TableUtils.createTableIfNotExists(source, MultipurposeRoom.class);
+		TableUtils.createTableIfNotExists(source, Equipment.class);
+		TableUtils.createTableIfNotExists(source, Booking.class);
+		TableUtils.createTableIfNotExists(source, AssBookingEquipment.class);
+		TableUtils.createTableIfNotExists(source, AssBookingRoom.class);
 	}
 	
 	private void upgrade(int lastVerison, int newVersion) throws SQLException{

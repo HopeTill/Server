@@ -29,7 +29,7 @@ public class DeleteUser extends MyServlet {
 		
 		try {
 			ServletResult.sendResult(response, manager.getUserDao()
-					.deleteById(Integer.parseInt(ID))==1 ?
+					.deleteById(Integer.parseInt(request.getParameter(ID)))==1 ?
 							ServletResult.SUCCESS
 							: ServletResult.ERROR);
 		} catch (NumberFormatException e) {

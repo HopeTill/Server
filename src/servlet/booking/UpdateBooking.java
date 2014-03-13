@@ -28,10 +28,10 @@ import entity.Room;
 public class UpdateBooking extends MyServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private static final String ADD_ROOM="add_room";
-	private static final String REMOVE_ROOM="remove_room";
-	private static final String ADD_EQUIPMENT="add_equipment";
-	private static final String REMOVE_EQUIPMENT="remove_equipment";
+	private static final String ADD_ROOM="add_room_list";
+	private static final String REMOVE_ROOM="remove_room_list";
+	private static final String ADD_EQUIPMENT="add_equipment_list";
+	private static final String REMOVE_EQUIPMENT="remove_equipment_list";
 
     /**
      * Default constructor. 

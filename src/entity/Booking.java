@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 import com.j256.ormlite.field.DatabaseField;
 
 public class Booking {
@@ -17,7 +19,7 @@ public class Booking {
 	private Date begin;
 	@DatabaseField(canBeNull=false)
 	private Date end;
-	@DatabaseField(canBeNull=false)
+	@DatabaseField(canBeNull=false, foreign=true, foreignAutoRefresh=true)
 	private People owner;
 	@DatabaseField
 	private float price;
@@ -65,7 +67,8 @@ public class Booking {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
+	
+	@JsonFormat(shape=Shape.STRING, pattern="dd/MM/yyyy HH:mm:ss")
 	public Date getBegin() {
 		return begin;
 	}
@@ -74,6 +77,7 @@ public class Booking {
 		this.begin = begin;
 	}
 
+	@JsonFormat(shape=Shape.STRING, pattern="dd/MM/yyyy HH:mm:ss")
 	public Date getEnd() {
 		return end;
 	}

@@ -26,7 +26,7 @@ public class DeleteBooking extends MyServlet {
 		DatabaseManager manager=DatabaseManager.getManager();
 		
 		try {
-			ServletResult.sendResult(response, manager.deleteBooking(Integer.parseInt(ID)) ?
+			ServletResult.sendResult(response, manager.deleteBooking(Integer.parseInt(request.getParameter(ID))) ?
 							ServletResult.SUCCESS
 							: ServletResult.ERROR);
 		} catch (NumberFormatException e) {
