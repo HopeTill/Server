@@ -33,6 +33,11 @@ public class UpdateEquipment extends MyServlet {
 			Equipment equipment = manager.getEquipmentDao().queryForId(
 					Integer.parseInt(request.getParameter(ID)));
 			
+			if(equipment==null){
+				ServletResult.sendResult(response, ServletResult.NOT_FOUND);
+				return;
+			}
+			
 			String title=request.getParameter(Equipment.TITLE);
 			String masterRoom=request.getParameter(Equipment.MULTIPURPOSE_ROOM);
 			String description=request.getParameter(Equipment.DESCRIPTION);

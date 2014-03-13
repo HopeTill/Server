@@ -2,6 +2,8 @@ package storage;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import org.apache.logging.log4j.LogManager;
@@ -12,10 +14,12 @@ import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.db.DatabaseTypeUtils;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
+import com.j256.ormlite.stmt.DeleteBuilder;
 import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 
+import entity.Booking;
 import entity.Equipment;
 import entity.MultipurposeRoom;
 import entity.People;
@@ -44,6 +48,9 @@ public class DatabaseManager {
 	private Dao<Room, Integer> roomDao;
 	private Dao<MultipurposeRoom, Integer> multipurposeRoomDao;
 	private Dao<Equipment, Integer> equipmentDao;
+	private Dao<Booking, Integer> bookingDao;
+	private Dao<AssBookingRoom, Integer> assBookingRoomDao;
+	private Dao<AssBookingEquipment, Integer> assBookingEquipmentDao;
 	
 	
 	private DatabaseManager(ConnectionSource source){
@@ -163,6 +170,30 @@ public class DatabaseManager {
 		return equipmentDao;
 	}
 	
+	public Dao<Booking, Integer> getBookingDao() throws SQLException {
+		if(bookingDao==null){
+			bookingDao=DaoManager.createDao(source, Booking.class);
+		}
+		
+		return bookingDao;
+	}
+	
+	protected Dao<AssBookingEquipment, Integer> getAssBookingEquipmentDao() throws SQLException {
+		if(assBookingEquipmentDao==null){
+			assBookingEquipmentDao=DaoManager.createDao(source, AssBookingEquipment.class);
+		}
+		
+		return assBookingEquipmentDao;
+	}
+	
+	protected Dao<AssBookingRoom, Integer> getAssBookingRoomDao() throws SQLException {
+		if(assBookingRoomDao==null){
+			assBookingRoomDao=DaoManager.createDao(source, AssBookingRoom.class);
+		}
+		
+		return assBookingRoomDao;
+	}
+	
 	public Dao<Info, Integer> getInfoDao() throws SQLException {
 		if(infoDao==null){
 			infoDao=DaoManager.createDao(source, Info.class);
@@ -178,5 +209,136 @@ public class DatabaseManager {
 		public String key;
 		@DatabaseField
 		public String value;
+	}
+	
+	public List<Room> getRoom(Booking booking){
+		try {
+			QueryBuilder<AssBookingRoom, Integer> queryAss=getAssBookingRoomDao().queryBuilder();
+			QueryBuilder<Room, Integer> query=getRoomDao().queryBuilder();
+			
+			queryAss.where().eq("booking_id", booking);
+			query.join(queryAss);
+			
+			return query.query();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return new ArrayList<Room>();
+	}
+	
+	public List<Equipment> getEquipment(Booking booking){
+		try {
+			QueryBuilder<AssBookingEquipment, Integer> queryAss=getAssBookingEquipmentDao().queryBuilder();
+			QueryBuilder<Equipment, Integer> query=getEquipmentDao().queryBuilder();
+			
+			queryAss.where().eq("booking_id", booking);
+			query.join(queryAss);
+			
+			return query.query();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return new ArrayList<Equipment>();
+	}
+	
+	public boolean addRoomTo(Booking booking, Room room){
+		AssBookingRoom ass=new AssBookingRoom();
+		
+		ass.setBooking(booking);
+		ass.setRoom(room);
+		
+		try {
+			return getAssBookingRoomDao().create(ass)==1;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
+	
+	public boolean removeRoomTo(Booking booking, Room room){
+		try {
+			DeleteBuilder<AssBookingRoom, Integer> delete=getAssBookingRoomDao().deleteBuilder();
+			delete.where().eq("booking_id", booking)
+					.and().eq("room_id", room);
+			
+			return delete.delete()>0;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
+	
+	public boolean addEquipmentTo(Booking booking, Equipment equipment){
+		AssBookingEquipment ass=new AssBookingEquipment();
+		
+		ass.setBooking(booking);
+		ass.setEquipment(equipment);
+		
+		try {
+			return getAssBookingEquipmentDao().create(ass)==1;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
+	
+	public boolean removeEquipmentTo(Booking booking, Equipment equipment){
+		try {
+			DeleteBuilder<AssBookingEquipment, Integer> delete=getAssBookingEquipmentDao().deleteBuilder();
+			delete.where().eq("booking_id", booking)
+					.and().eq("equipoment_id", equipment);
+			
+			return delete.delete()>0;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
+	
+	public Booking getFullBooking(int id){
+		Booking booking = null;
+		
+		try {
+			booking = getBookingDao().queryForId(id);
+			
+			if(booking!=null){
+				booking.setRooms(getRoom(booking));
+				booking.setEquipments(getEquipment(booking));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return booking;
+	}
+	
+	public boolean deleteBooking(int id){
+		Booking booking = null;
+		
+		try {
+			booking = getBookingDao().queryForId(id);
+			
+			if(booking!=null){
+				for(Room room : getRoom(booking)){
+					removeRoomTo(booking, room);
+				}
+				
+				for(Equipment equipment : getEquipment(booking)){
+					removeEquipmentTo(booking, equipment);
+				}
+			}
+			
+			return getBookingDao().delete(booking)>0;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return false;
 	}
 }
