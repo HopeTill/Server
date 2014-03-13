@@ -57,6 +57,7 @@
 <input type="text" name="id" value="" />
 <input type="submit" />
 </form>
+<br />
 /MultipurposeRoom/Subscribe
 <form method="POST" action="MultipurposeRoom/Subscribe">
 <input type="text" name="name" value="" />
@@ -66,6 +67,10 @@
 /MultipurposeRoom/Get
 <form method="POST" action="MultipurposeRoom/Get">
 <input type="text" name="id" value="" />
+<input type="submit" />
+</form>
+/MultipurposeRoom/GetAll
+<form method="POST" action="MultipurposeRoom/GetAll">
 <input type="submit" />
 </form>
 /MultipurposeRoom/Update
@@ -92,6 +97,11 @@
 <input type="text" name="id" value="" />
 <input type="submit" />
 </form>
+/Room/GetAll
+<form method="POST" action="Room/GetAll">
+<input type="text" name="multipurpose_room_id" value="" />
+<input type="submit" />
+</form>
 /Room/Update
 <form method="POST" action="Room/Update">
 <input type="text" name="title" value="" />
@@ -115,6 +125,11 @@
 /Equipment/Get
 <form method="POST" action="Equipment/Get">
 <input type="text" name="id" value="" />
+<input type="submit" />
+</form>
+/Equipment/GetAll
+<form method="POST" action="Equipment/GetAll">
+<input type="text" name="multipurpose_room_id" value="" />
 <input type="submit" />
 </form>
 /Equipment/Update
