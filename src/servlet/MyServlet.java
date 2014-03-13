@@ -37,7 +37,7 @@ public abstract class MyServlet extends HttpServlet {
 		boolean well=true;
 		
 		for(String key : requiredParameter){
-			well &= MyServlet.isEmpty(request.getParameter(key));
+			well &= !MyServlet.isEmpty(request.getParameter(key));
 		}
 		
 		if(!well){

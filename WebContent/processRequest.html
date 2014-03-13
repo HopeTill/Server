@@ -13,6 +13,23 @@
 <input type="text" name="last_name" value="" />
 <input type="submit" />
 </form>
+/User/Get
+<form method="POST" action="User/Get">
+<input type="text" name="id" value="" />
+<input type="submit" />
+</form>
+/User/Update
+<form method="POST" action="User/Update">
+<input type="text" name="password" value="" />
+<input type="text" name="first_name" value="" />
+<input type="text" name="last_name" value="" />
+<input type="submit" />
+</form>
+/User/Delete
+<form method="POST" action="User/Delete">
+<input type="text" name="id" value="" />
+<input type="submit" />
+</form>
 <br />
 /People/Subscribe
 <form method="POST" action="People/Subscribe">
@@ -22,11 +39,33 @@
 <input type="text" name="phone" value="" />
 <input type="submit" />
 </form>
-<br />
+/People/Get
+<form method="POST" action="People/Get">
+<input type="text" name="id" value="" />
+<input type="submit" />
+</form>
+/People/Update
+<form method="POST" action="People/Update">
+<input type="text" name="first_name" value="" />
+<input type="text" name="last_name" value="" />
+<input type="text" name="email" value="" />
+<input type="text" name="phone" value="" />
+<input type="submit" />
+</form>
+/People/Delete
+<form method="POST" action="People/Delete">
+<input type="text" name="id" value="" />
+<input type="submit" />
+</form>
 /MultipurposeRoom/Subscribe
 <form method="POST" action="MultipurposeRoom/Subscribe">
 <input type="text" name="name" value="" />
 <input type="text" name="location" value="" />
+<input type="submit" />
+</form>
+/MultipurposeRoom/Get
+<form method="POST" action="MultipurposeRoom/Get">
+<input type="text" name="id" value="" />
 <input type="submit" />
 </form>
 /MultipurposeRoom/Update
@@ -48,7 +87,12 @@
 <input type="text" name="capacity" value="" />
 <input type="submit" />
 </form>
-/Room/Subscribe
+/Room/Get
+<form method="POST" action="Room/Get">
+<input type="text" name="id" value="" />
+<input type="submit" />
+</form>
+/Room/Update
 <form method="POST" action="Room/Update">
 <input type="text" name="title" value="" />
 <input type="text" name="capacity" value="" />
@@ -56,6 +100,34 @@
 </form>
 /Room/Delete
 <form method="POST" action="Room/Delete">
+<input type="text" name="id" value="" />
+<input type="submit" />
+</form>
+<br />
+/Equipment/Subscribe
+<form method="POST" action="Equipment/Subscribe">
+<input type="text" name="multipurpose_room_id" value="" />
+<input type="text" name="title" value="" />
+<input type="text" name="description" value="" />
+<input type="text" name="available" value="" />
+<input type="submit" />
+</form>
+/Equipment/Get
+<form method="POST" action="Equipment/Get">
+<input type="text" name="id" value="" />
+<input type="submit" />
+</form>
+/Equipment/Update
+<form method="POST" action="Equipment/Update">
+<input type="text" name="id" value="" />
+<input type="text" name="multipurpose_room_id" value="" />
+<input type="text" name="title" value="" />
+<input type="text" name="description" value="" />
+<input type="text" name="available" value="" />
+<input type="submit" />
+</form>
+/Equipment/Delete
+<form method="POST" action="Equipment/Delete">
 <input type="text" name="id" value="" />
 <input type="submit" />
 </form>
