@@ -112,6 +112,9 @@ public class DatabaseManager {
 		TableUtils.createTable(source, Room.class);
 		TableUtils.createTable(source, MultipurposeRoom.class);
 		TableUtils.createTable(source, Equipment.class);
+		TableUtils.createTable(source, Booking.class);
+		TableUtils.createTable(source, AssBookingEquipment.class);
+		TableUtils.createTable(source, AssBookingRoom.class);
 	}
 	
 	private void upgrade(int lastVerison, int newVersion) throws SQLException{
@@ -119,15 +122,21 @@ public class DatabaseManager {
 		
 		TableUtils.dropTable(source, User.class, true);	
 		TableUtils.dropTable(source, People.class, true);
+		TableUtils.dropTable(source, AssBookingEquipment.class, true);
+		TableUtils.dropTable(source, AssBookingRoom.class, true);
 		TableUtils.dropTable(source, Equipment.class, true);
 		TableUtils.dropTable(source, Room.class, true);
 		TableUtils.dropTable(source, MultipurposeRoom.class, true);
+		TableUtils.dropTable(source, Booking.class, true);
 		
 		TableUtils.createTable(source, User.class);
 		TableUtils.createTable(source, People.class);
 		TableUtils.createTable(source, Room.class);
 		TableUtils.createTable(source, MultipurposeRoom.class);
 		TableUtils.createTable(source, Equipment.class);
+		TableUtils.createTable(source, Booking.class);
+		TableUtils.createTable(source, AssBookingEquipment.class);
+		TableUtils.createTable(source, AssBookingRoom.class);
 	}
 
 	public Dao<User, Integer> getUserDao() throws SQLException {
