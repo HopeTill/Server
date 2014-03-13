@@ -16,6 +16,7 @@ import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 
+import entity.Equipment;
 import entity.MultipurposeRoom;
 import entity.People;
 import entity.Room;
@@ -26,7 +27,7 @@ import entity.User;
  * the DAOs used by the other classes.
  */
 public class DatabaseManager {
-	private static final int DATABASE_VERSION = 1;
+	private static final int DATABASE_VERSION = 2;
 	private static final String HOST="host";
 	private static final String LOGIN="login";
 	private static final String PASSWD="passwd";
@@ -42,6 +43,7 @@ public class DatabaseManager {
 	private Dao<People, Integer> peopleDao;
 	private Dao<Room, Integer> roomDao;
 	private Dao<MultipurposeRoom, Integer> multipurposeRoomDao;
+	private Dao<Equipment, Integer> equipmentDao;
 	
 	
 	private DatabaseManager(ConnectionSource source){
@@ -102,6 +104,7 @@ public class DatabaseManager {
 		TableUtils.createTable(source, People.class);
 		TableUtils.createTable(source, Room.class);
 		TableUtils.createTable(source, MultipurposeRoom.class);
+		TableUtils.createTable(source, Equipment.class);
 	}
 	
 	private void upgrade(int lastVerison, int newVersion) throws SQLException{
@@ -109,6 +112,7 @@ public class DatabaseManager {
 		
 		TableUtils.dropTable(source, User.class, true);	
 		TableUtils.dropTable(source, People.class, true);
+		TableUtils.dropTable(source, Equipment.class, true);
 		TableUtils.dropTable(source, Room.class, true);
 		TableUtils.dropTable(source, MultipurposeRoom.class, true);
 		
@@ -116,6 +120,7 @@ public class DatabaseManager {
 		TableUtils.createTable(source, People.class);
 		TableUtils.createTable(source, Room.class);
 		TableUtils.createTable(source, MultipurposeRoom.class);
+		TableUtils.createTable(source, Equipment.class);
 	}
 
 	public Dao<User, Integer> getUserDao() throws SQLException {
@@ -148,6 +153,14 @@ public class DatabaseManager {
 		}
 		
 		return multipurposeRoomDao;
+	}
+	
+	public Dao<Equipment, Integer> getEquipmentDao() throws SQLException {
+		if(equipmentDao==null){
+			equipmentDao=DaoManager.createDao(source, Equipment.class);
+		}
+		
+		return equipmentDao;
 	}
 	
 	public Dao<Info, Integer> getInfoDao() throws SQLException {
