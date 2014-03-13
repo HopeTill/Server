@@ -112,6 +112,7 @@ public class SubscribeBooking extends MyServlet {
 			ServletResult.sendResult(response, ServletResult.ERROR);
 		} catch (ParseException e) {
 			e.printStackTrace();
+			ServletResult.sendResult(response, ServletResult.BAD_DATE_FORMAT);
 		}
 	}
 

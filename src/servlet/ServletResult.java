@@ -40,4 +40,5 @@ public class ServletResult {
 	public static final int NOT_FOUND=50;
 	public static final int MISSING_PARAMETER=100;
 	public static final int BAD_NUMBER_FORMAT=200;
+	public static final int BAD_DATE_FORMAT=201;
 }
