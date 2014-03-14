@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -45,14 +46,15 @@ public class GetAllBooking extends MyServlet {
 				QueryBuilder<Booking, Integer> query=manager.getBookingDao().queryBuilder();
 				
 				query.where().ge("begin", df.parse(begin))
-						.and().lt("end", df.parse(end));
+						.and().lt("end", df.parse(end));				
+								
 				
 				ServletResult.sendResult(response, new GetResult(
-						ServletResult.SUCCESS, query.query()));
+						ServletResult.SUCCESS, fill(manager, query.query())));
 			}
 			else{
 				ServletResult.sendResult(response, new GetResult(
-						ServletResult.SUCCESS, manager.getBookingDao().queryForAll()));				
+						ServletResult.SUCCESS, fill(manager, manager.getBookingDao().queryForAll())));				
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -60,7 +62,16 @@ public class GetAllBooking extends MyServlet {
 		} catch (ParseException e) {
 			e.printStackTrace();
 			ServletResult.sendResult(response, ServletResult.BAD_DATE_FORMAT);
-		}		
+		}
+	}
+	
+	private static List<Booking> fill(DatabaseManager manager, List<Booking> list){
+		for(Booking booking : list){
+			booking.setRooms(manager.getRoom(booking));
+			booking.setEquipments(manager.getEquipment(booking));
+		}
+		
+		return list;
 	}
 
 }
